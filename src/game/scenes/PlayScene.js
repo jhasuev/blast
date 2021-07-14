@@ -6,10 +6,35 @@ export default class PlayScene extends Scene {
   }
 
   create () {
-    console.log('bg');
     this.add.image(0, 0, 'bg').setOrigin(0)
+    this.createTiles()
   }
 
-  update () {
+  createTiles(){
+    this.cols = 9
+    this.rows = 9
+    const { width, height } = this.textures.get("tile1").getSourceImage()
+    const tilesWidth = (width * this.cols)
+    const tilesHeight = (height * this.cols)
+    const topOffset = (this.sys.game.config.height - tilesHeight) / 2
+    const leftOffset = (this.sys.game.config.width - tilesWidth) / 2
+    
+    for (let row = 0; row < this.rows; row++) {
+      for (let col = 0; col < this.cols; col++) {
+        this.add.image(
+          (col * width) + leftOffset,
+          (row * height) + topOffset,
+          this.getRandomTile()
+        ).setOrigin(0)
+      }
+    }
+  }
+
+  getRandomTile() {
+    return 'tile' + this.getRandomNum(1, 5)
+  }
+
+  getRandomNum(min, max) {
+    return Math.round(min - 0.5 + Math.random() * (max - min + 1))
   }
 }
