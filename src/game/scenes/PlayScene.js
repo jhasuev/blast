@@ -10,7 +10,14 @@ export default class PlayScene extends Scene {
     this.createTiles()
   }
 
-  createTiles(){
+  createTiles() {
+    this.initTiles()
+    this.addTiles()
+  }
+
+  initTiles(){
+    this.tiles = []
+
     this.cols = 9
     this.rows = 9
     const { width, height } = this.textures.get("tile1").getSourceImage()
@@ -18,16 +25,22 @@ export default class PlayScene extends Scene {
     const tilesHeight = (height * this.cols)
     const topOffset = (this.sys.game.config.height - tilesHeight) / 2
     const leftOffset = (this.sys.game.config.width - tilesWidth) / 2
-    
+
     for (let row = 0; row < this.rows; row++) {
       for (let col = 0; col < this.cols; col++) {
-        this.add.image(
-          (col * width) + leftOffset,
-          (row * height) + topOffset,
-          this.getRandomTile()
-        ).setOrigin(0)
+        this.tiles.push({
+          x: (col * width) + leftOffset,
+          y: (row * height) + topOffset,
+          tile: this.getRandomTile()
+        })
       }
     }
+  }
+
+  addTiles() {
+    this.tiles.forEach(tile => {
+      this.add.image(tile.x, tile.y, tile.tile).setOrigin(0)
+    })
   }
 
   getRandomTile() {
