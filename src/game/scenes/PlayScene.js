@@ -15,7 +15,5 @@ export default class PlayScene extends Scene {
 
   onTileClicked(pointer, tile) {
     this.tiles.removeAroundSimilarTiles(tile)
-    // console.log("pointer", pointer)
-    // console.log("tile", tile)
   }
 }
