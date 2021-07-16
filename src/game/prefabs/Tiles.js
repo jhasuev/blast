@@ -22,6 +22,8 @@ export default class Tiles extends Phaser.Physics.Arcade.Group {
         }))
       })
     })
+
+    this.checkSimilarTiles()
   }
 
   getTilesPositions() {
@@ -58,6 +60,7 @@ export default class Tiles extends Phaser.Physics.Arcade.Group {
         tile.kill().then(() => {
           if(tiles.length === (i + 1)) {
             this.addTiles()
+            this.checkSimilarTiles()
           }
         })
       })
@@ -128,6 +131,23 @@ export default class Tiles extends Phaser.Physics.Arcade.Group {
     }
 
     return tiles
+  }
+
+  checkSimilarTiles() {
+    let hasSimilarTiles = false
+
+    for (let tile of this.getChildren()) {
+      if(this.getAroundSimilarTiles(tile).length > 1) {
+        hasSimilarTiles = true
+        break
+      }
+    }
+
+    if (!hasSimilarTiles) {
+      console.log('game over or shuffle tiles...')
+    }
+
+    return hasSimilarTiles
   }
 
   getTile(row, col) {
