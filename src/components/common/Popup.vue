@@ -17,8 +17,8 @@ export default {
   },
   methods: {
     onBackgroundClick() {
-      if(this.bgClick) {
-        this.$emit("update:modelValue", !this.modelValue)
+      if(this.bgClick && this.modelValue) {
+        this.$emit("update:modelValue", false)
       }
     }
   },
