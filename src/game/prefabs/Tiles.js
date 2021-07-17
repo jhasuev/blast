@@ -53,18 +53,26 @@ export default class Tiles extends Phaser.Physics.Arcade.Group {
   }
 
   removeAroundSimilarTiles(tile) {
-    const tiles = this.getAroundSimilarTiles(tile)
+    return new Promise((resolve, reject) => {
+      const tiles = this.getAroundSimilarTiles(tile)
+      const count = tiles.length
 
-    if (tiles.length > 1) {
-      tiles.forEach((tile, i) => {
-        tile.kill().then(() => {
-          if(tiles.length === (i + 1)) {
-            this.addTiles()
-            this.checkSimilarTiles()
-          }
+      if (count > 1) {
+        const tileType = tiles[0].tile
+
+        tiles.forEach((tile, i) => {
+          tile.kill().then(() => {
+            if (count === (i + 1)) {
+              resolve({ tile: tileType, count })
+              this.addTiles()
+              this.checkSimilarTiles()
+            }
+          })
         })
-      })
-    }
+      } else {
+        reject()
+      }
+    })
   }
 
   addTiles() {

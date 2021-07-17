@@ -1,20 +1,20 @@
 <template>
-  <div
-    v-if="downloaded"
-    :id="containerId"
-    class="game-container"
-  />
-  <div
-    v-else
-    class="preload-text"
-  >
+  <div v-if="downloaded" class="game-container">
+    <navbar />
+    <div :id="containerId" class="game-container__inner" />
+  </div>
+  <div v-else class="preload-text">
     Игра загружается ...
   </div>
 </template>
 
 <script>
+import Navbar from "./Navbar"
 export default {
   name: "Game",
+  components: {
+    Navbar,
+  },
   data() {
     return {
       downloaded: false,
@@ -40,6 +40,12 @@ export default {
 .game-container {
   height: 100vh;
   width: 100vw;
+  padding: 100px 15px;
+
+  &__inner {
+    width: 100%;
+    height: 100%;
+  }
 }
 
 .preload-text {

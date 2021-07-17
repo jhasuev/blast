@@ -24,7 +24,9 @@ export default class Tile extends Phaser.GameObjects.Sprite {
   }
 
   static generate(params = {}) {
-    return new this(Tile.generatedData(params))
+    const tile = new this(Tile.generatedData({ ...params, y: 0 }))
+    tile.moveY(params.y)
+    return tile
   }
 
   kill() {
@@ -47,8 +49,9 @@ export default class Tile extends Phaser.GameObjects.Sprite {
     this.scene.tweens.add({
       y,
       targets: this,
-      ease: "Linear",
-      duration: 200,
+      ease: "Bounce.Out",
+      duration: 500,
+      delay: Phaser.Math.Between(1, 50),
       onComplete: () => {
       }
     })
