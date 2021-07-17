@@ -1,6 +1,11 @@
 <template>
   <div v-if="downloaded" class="game-container">
-    <navbar />
+    <div ref="ui">
+      <navbar />
+      <popup v-model="popup" :bgClick="!false">
+        Popup template
+      </popup>
+    </div>
     <div :id="containerId" class="game-container__inner" />
   </div>
   <div v-else class="preload-text">
@@ -10,32 +15,47 @@
 
 <script>
 import Navbar from "./components/Navbar"
+import Popup from "./components/common/Popup"
 export default {
   name: "App",
   components: {
     Navbar,
+    Popup,
   },
   data() {
     return {
       downloaded: false,
       gameInstance: null,
-      containerId: 'game-container'
+      containerId: 'game-container',
+      popup: true,
     }
   },
   async mounted() {
-    const game = await import(/* webpackChunkName: "game" */ '@/game/game')
+    const game = await import('@/game/')
     this.downloaded = true
+    this.stopHandlersFromUI()
     this.$nextTick(() => {
       this.gameInstance = game.launch(this.containerId)
     })
   },
+  methods: {
+    stopHandlersFromUI() {
+      const ui = this.$refs.ui;
+      if(!ui) return setInterval(() => this.stopHandlersFromUI(), 16);
+
+      const events = ['mousedown', 'mouseup', 'touchstart', 'touchmove', 'touchend', 'touchcancel']
+      for (const eventName of events){
+        ui.addEventListener(eventName, e => e.stopPropagation())
+      }
+    },
+  },
   destroyed() {
     this.gameInstance.destroy(false)
-  }
+  },
 }
 </script>
 
-<style lang="scss" scoped>
+<style lang="scss">
 
 .game-container {
   height: 100vh;
@@ -45,6 +65,15 @@ export default {
   &__inner {
     width: 100%;
     height: 100%;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    canvas {
+      max-width: 100%;
+      max-height: 100%;
+    }
   }
 }
 

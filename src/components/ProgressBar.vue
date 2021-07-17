@@ -2,7 +2,7 @@
   <div class="progress-bar">
     <div class="progress-bar__text">Прогресс</div>
     <div class="progress-bar__status">
-      <i class="progress-bar__status-indicator" :style="{ width: `${state}%` }" />
+      <i class="progress-bar__status-indicator" :style="{ width: `${progress}%` }" />
     </div>
   </div>
 </template>
@@ -11,7 +11,7 @@
 export default {
   name: "ProgressBar",
   props: {
-    state: { type: Number, default: 0 },
+    progress: { type: Number, default: 0 },
   },
 }
 </script>

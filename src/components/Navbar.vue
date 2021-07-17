@@ -13,7 +13,7 @@
 </template>
 
 <script>
-import TextBox from "./TextBox"
+import TextBox from "./common/TextBox"
 import ProgressBar from "./ProgressBar"
 export default {
   name: "Navbar",
