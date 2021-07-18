@@ -65,3 +65,10 @@ body {
     height: 4px;
   }
 }
+
+.info-box {
+  padding: 10px 15px;
+  box-shadow: 0 0 2px 3px rgba(255,255,255,.1), inset 0 0 2px 4px #00326E;
+  background: linear-gradient(to bottom, #001737, #00326E);
+  border-radius: 14px;
+}

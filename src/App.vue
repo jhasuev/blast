@@ -4,6 +4,10 @@
       <navbar />
       <popup v-model="popup" title="Меню">
         <div class="circle-number">37</div>
+        <div class="info-box  coins">
+          очки:
+          <div class="coins--bigger">221</div>
+        </div>
       </popup>
     </div>
     <div :id="containerId" class="game-container__inner" />
@@ -87,6 +91,14 @@ export default {
 
   font-size: 2rem;
   font-family: 'Courier New', Courier, monospace;
+}
+
+.coins {
+  margin-top: 16px;
+  font-size: 22px;
+  &--bigger {
+    font-size: 40px;
+  }
 }
 
 </style>
