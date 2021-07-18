@@ -1,10 +1,7 @@
 <template>
-  <popup title="Рекорд">
-    <div class="info-box  coins">
-      очки:
-      <div class="coins--bigger">12341</div>
-      рекордные:
-      <div class="coins--bigger">221</div>
+  <popup title="404">
+    <div class="info-box">
+      Упс... ошибка
     </div>
     <div class="menu-buttons">
       <button class="menu-buttons__item  btn  btn--red" @click="goToMenu()">В меню</button>
@@ -14,7 +11,12 @@
 
 <script>
 export default {
-  name: "Records",
+  name: "404",
 }
 </script>
 
+<style scoped>
+.info-box {
+  font-size: 15px;
+}
+</style>

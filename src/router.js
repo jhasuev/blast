@@ -21,6 +21,16 @@ const routes = [
     name: "records",
     component: () => import("@/views/Records"),
   },
+  {
+    path: "/about",
+    name: "about",
+    component: () => import("@/views/About"),
+  },
+  {
+    path: "/:pathMatch(.*)*",
+    name: "404",
+    component: () => import("@/views/404"),
+  },
 ]
 
 export default createRouter({

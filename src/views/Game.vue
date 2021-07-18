@@ -5,7 +5,7 @@
 <script>
 import Navbar from "@/components/Navbar"
 export default {
-  name: "Result",
+  name: "Game",
   components: {
     Navbar,
   },

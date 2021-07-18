@@ -43,7 +43,6 @@ export default {
     right: 0;
     bottom: 0;
     z-index: -1;
-    background: rgba(0,0,0,.5);
   }
 
   &__inner {
@@ -110,12 +109,5 @@ export default {
     }
   }
 }
-
-// .fade-enter-active, .fade-leave-active {
-//   transition: opacity .5s;
-// }
-// .fade-enter, .fade-leave-to {
-//   opacity: 0;
-// }
 
 </style>

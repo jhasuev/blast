@@ -1,23 +1,27 @@
 <template>
   <div class="navbar">
     <div class="navbar__item">
-      <div class="text-box text-box--pink">59</div>
+      <div class="text-box text-box--pink">{{ getScores.record }}</div>
     </div>
     <div class="navbar__item  navbar__item--bigger">
       <progress-bar :progress="50" />
     </div>
     <div class="navbar__item">
-      <div class="text-box text-box--red">227</div>
+      <div class="text-box text-box--red">{{ getScores.current }}</div>
     </div>
   </div>
 </template>
 
 <script>
 import ProgressBar from "./ProgressBar"
+import { mapGetters } from "vuex"
 export default {
   name: "Navbar",
   components: {
     ProgressBar,
+  },
+  computed: {
+    ...mapGetters([ 'getScores' ]),
   },
 }
 </script>

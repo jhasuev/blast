@@ -7,7 +7,7 @@
     </div>
     <div class="menu-buttons">
       <button class="menu-buttons__item  btn  btn--red">Играть еще</button>
-      <button class="menu-buttons__item  btn  btn--red">В меню</button>
+      <button class="menu-buttons__item  btn  btn--red" @click="goToMenu()">В меню</button>
     </div>
   </popup>
 </template>

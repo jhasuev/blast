@@ -1,7 +1,12 @@
 <template>
-  <div v-if="downloaded" class="game-container">
-    <div ref="ui">
-      <router-view />
+  <div v-if="downloaded" :class="['game-container', { 'is-gaming' : isGaming }]">
+    <div ref="ui" :class="[ 'ui' ]">
+      <i class="ui__bg-layout" />
+      <router-view v-slot="{ Component }">
+        <transition name="slide" mode="out-in">
+          <component :is="Component" />
+        </transition>
+      </router-view>
     </div>
     <div :id="containerId" class="game-container__inner" />
   </div>
@@ -19,6 +24,11 @@ export default {
       gameInstance: null,
       containerId: 'game-container',
     }
+  },
+  computed: {
+    isGaming(){
+      return this.$route.name === 'game'
+    },
   },
   async mounted() {
     const game = await import('@/game/')
@@ -50,6 +60,7 @@ export default {
 .game-container {
   height: 100vh;
   width: 100vw;
+  overflow: hidden;
   padding: 100px 15px;
 
   &__inner {
@@ -63,8 +74,37 @@ export default {
     canvas {
       max-width: 100%;
       max-height: 100%;
+
+      filter: blur(50px);
+
+      transition: .3s;
+
+      .is-gaming & {
+        filter: none;
+      }
     }
   }
+}
+
+.ui {
+  &__bg-layout {
+    content: "";
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100vw;
+    height: 100vh;
+    background-color: rgba(0, 0, 0, .5);
+
+    transition: .3s;
+
+    .is-gaming & {
+      opacity: 0;
+      visibility: hidden;
+      pointer-events: none;
+    }
+  }
+
 }
 
 .preload-text {
@@ -78,5 +118,19 @@ export default {
   font-size: 2rem;
   font-family: 'Courier New', Courier, monospace;
 }
+
+.slide {
+  &-enter-active,
+  &-leave-active {
+    transition: .5s;
+  }
+  
+  &-enter-from,
+  &-leave-to {
+    transform: translateY(-100%);
+  }
+}
+
+
 
 </style>
