@@ -1,4 +1,7 @@
 import { Scene } from 'phaser'
+import eventEmitter from "@/eventEmitter"
+import router from "@/router"
+
 import bg from '@/game/assets/bg.png'
 import tile1 from '@/game/assets/tiles/1.png'
 import tile2 from '@/game/assets/tiles/2.png'
@@ -20,7 +23,12 @@ export default class BootScene extends Scene {
     this.load.image('tile5', tile5)
   }
 
-  create () {
-    this.scene.start('PlayScene')
+  create(state) {
+    if (state.stoped) return null
+
+    eventEmitter.on("phaser:startGame", () => this.scene.start('PlayScene'))
+    if(router.currentRoute._value.name == 'game') {
+      this.scene.start('PlayScene')
+    }
   }
 }

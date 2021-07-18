@@ -53,6 +53,7 @@ export default class Tile extends Phaser.GameObjects.Sprite {
       duration: 500,
       delay: Phaser.Math.Between(1, 50),
       onComplete: () => {
+        this.scene.canClick = true
       }
     })
   }

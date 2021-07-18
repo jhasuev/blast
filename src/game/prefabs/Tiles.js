@@ -1,12 +1,13 @@
 import Phaser from "phaser"
 import Tile from "./Tile"
+import config from "@/config"
 
 export default class Tiles extends Phaser.Physics.Arcade.Group {
   constructor(scene) {
     super(scene.physics.world, scene)
     this.scene = scene
-    this.cols = 9
-    this.rows = 9
+    this.cols = config.cols
+    this.rows = config.rows
   }
 
   createTiles() {

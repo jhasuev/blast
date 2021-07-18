@@ -2,7 +2,7 @@
   <popup title="Меню">
     <div class="menu-buttons">
       <button class="menu-buttons__item  btn  btn--red" @click="onMenuItemClick('game')">Играть</button>
-      <button class="menu-buttons__item  btn  btn--red" @click="onMenuItemClick('records')">Рекорды</button>
+      <button class="menu-buttons__item  btn  btn--red" @click="onMenuItemClick('record')">Рекорд</button>
       <button class="menu-buttons__item  btn  btn--red" @click="onMenuItemClick('about')">Об игре</button>
     </div>
   </popup>

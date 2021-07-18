@@ -17,9 +17,9 @@ const routes = [
     component: () => import("@/views/Game"),
   },
   {
-    path: "/records",
-    name: "records",
-    component: () => import("@/views/Records"),
+    path: "/record",
+    name: "record",
+    component: () => import("@/views/Record"),
   },
   {
     path: "/about",

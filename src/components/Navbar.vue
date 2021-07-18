@@ -1,27 +1,57 @@
 <template>
   <div class="navbar">
     <div class="navbar__item">
-      <div class="text-box text-box--pink">{{ getScores.record }}</div>
+      <div class="text-box text-box--pink">{{ getRecord }}</div>
     </div>
     <div class="navbar__item  navbar__item--bigger">
-      <progress-bar :progress="50" />
+      <timer :progress="getPercent" />
     </div>
     <div class="navbar__item">
-      <div class="text-box text-box--red">{{ getScores.current }}</div>
+      <div class="text-box text-box--red">{{ getScore }}</div>
     </div>
   </div>
 </template>
 
 <script>
-import ProgressBar from "./ProgressBar"
+import eventEmitter from "@/eventEmitter"
+import Timer from "./Timer"
 import { mapGetters } from "vuex"
+import config from "@/config"
 export default {
   name: "Navbar",
   components: {
-    ProgressBar,
+    Timer,
   },
+
+  data(){
+    return {
+      timer: config.timer,
+    }
+  },
+
+  watch: {
+    getPercent(current) {
+      if (current === 0) {
+        eventEmitter.emit("vue:timeover")
+      }
+    },
+  },
+
   computed: {
-    ...mapGetters([ 'getScores' ]),
+    ...mapGetters([
+      'getScore',
+      'getRecord',
+    ]),
+
+    getPercent() {
+      return this.timer / config.timer * 100
+    },
+  },
+
+  mounted() {
+    eventEmitter.on("vue:updateTimer", dt => {
+      this.timer = Math.max(this.timer - dt, 0)
+    })
   },
 }
 </script>

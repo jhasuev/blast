@@ -1,15 +1,15 @@
 <template>
-  <div class="progress-bar">
-    <div class="progress-bar__text">Прогресс</div>
-    <div class="progress-bar__status">
-      <i class="progress-bar__status-indicator" :style="{ width: `${progress}%` }" />
+  <div class="timer">
+    <div class="timer__text">Таймер</div>
+    <div class="timer__status">
+      <i class="timer__status-indicator" :style="{ width: `${progress}%` }" />
     </div>
   </div>
 </template>
 
 <script>
 export default {
-  name: "ProgressBar",
+  name: "Timer",
   props: {
     progress: { type: Number, default: 0 },
   },
@@ -18,7 +18,7 @@ export default {
 
 <style lang="scss" scoped>
 
-.progress-bar {
+.timer {
   background: linear-gradient(to bottom, #00183A, #00336E);
   padding: 14px;
   padding-top: 5px;
@@ -36,6 +36,7 @@ export default {
     box-shadow: 0 3px 3px rgba(255,255,255,.25);
     height: 28px;
     border-radius: 28px;
+    overflow: hidden;
 
     &-indicator {
       display: block;
