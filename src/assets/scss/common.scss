@@ -7,6 +7,7 @@ body {
   color: #fff;
 }
 
+.btn,
 .text-box {
   @include flare-dots;
 
@@ -32,6 +33,20 @@ body {
 
   &--red {
     background: linear-gradient( to top, #E3025F, #AE014C, #FF91DE);
+  }
+}
+
+.btn {
+  cursor: pointer;
+  transition: .2s;
+  
+  &:hover {
+    filter: brightness(.9);
+  }
+
+  &:active {
+    box-shadow: none;
+    filter: brightness(.8);
   }
 }
 
@@ -71,4 +86,23 @@ body {
   box-shadow: 0 0 2px 3px rgba(255,255,255,.1), inset 0 0 2px 4px #00326E;
   background: linear-gradient(to bottom, #001737, #00326E);
   border-radius: 14px;
+}
+
+.coins {
+  margin-top: 16px;
+  font-size: 22px;
+  &--bigger {
+    font-size: 40px;
+  }
+}
+
+.menu-buttons {
+  margin-top: 15px;
+  &__item {
+    width: 100%;
+    margin-bottom: 10px;
+    &:last-child {
+      margin-bottom: 0;
+    }
+  }
 }

@@ -1,32 +1,22 @@
 <template>
-  <transition name="fade" mode="in-out">
-    <div v-if="modelValue" class="popup">
-      <i class="popup__bg" @click="onBackgroundClick()" />
+  <div class="popup">
+    <i class="popup__bg" />
 
-      <div class="popup__inner">
-        <h3 v-if="title" v-text="title" class="popup__title" />
-        <div class="popup__content">
-          <slot />
-        </div>
+    <div class="popup__inner">
+      <h3 v-if="title" v-text="title" class="popup__title" />
+      <div class="popup__content">
+        <slot />
       </div>
     </div>
-  </transition>
+  </div>
 </template>
 
 <script>
 export default {
   name: "Popup",
   props: {
-    modelValue: { type: Boolean },
     title: { type: String, default: "" },
     bgClick: { type: Boolean, default: true },
-  },
-  methods: {
-    onBackgroundClick() {
-      if(this.bgClick && this.modelValue) {
-        this.$emit("update:modelValue", false)
-      }
-    }
   },
 }
 </script>
@@ -98,7 +88,7 @@ export default {
     position: relative;
     z-index: 1;
 
-    padding: 13px 32px 17px;
+    padding: 15px 30px;
 
     background-color: #00539E;
     border: 7px solid #00D2EF;
@@ -121,11 +111,11 @@ export default {
   }
 }
 
-.fade-enter-active, .fade-leave-active {
-  transition: opacity .5s;
-}
-.fade-enter, .fade-leave-to {
-  opacity: 0;
-}
+// .fade-enter-active, .fade-leave-active {
+//   transition: opacity .5s;
+// }
+// .fade-enter, .fade-leave-to {
+//   opacity: 0;
+// }
 
 </style>

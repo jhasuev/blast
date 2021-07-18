@@ -1,14 +1,7 @@
 <template>
   <div v-if="downloaded" class="game-container">
     <div ref="ui">
-      <navbar />
-      <popup v-model="popup" title="Меню">
-        <div class="circle-number">37</div>
-        <div class="info-box  coins">
-          очки:
-          <div class="coins--bigger">221</div>
-        </div>
-      </popup>
+      <router-view />
     </div>
     <div :id="containerId" class="game-container__inner" />
   </div>
@@ -18,20 +11,13 @@
 </template>
 
 <script>
-import Navbar from "./components/Navbar"
-import Popup from "./components/common/Popup"
 export default {
   name: "App",
-  components: {
-    Navbar,
-    Popup,
-  },
   data() {
     return {
       downloaded: false,
       gameInstance: null,
       containerId: 'game-container',
-      popup: true,
     }
   },
   async mounted() {
@@ -91,14 +77,6 @@ export default {
 
   font-size: 2rem;
   font-family: 'Courier New', Courier, monospace;
-}
-
-.coins {
-  margin-top: 16px;
-  font-size: 22px;
-  &--bigger {
-    font-size: 40px;
-  }
 }
 
 </style>
