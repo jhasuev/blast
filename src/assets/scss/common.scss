@@ -1,6 +1,67 @@
+@import "./_mixins.scss";
+
 body {
   min-height: 100vh;
   font-family: Marvin;
   background-color: #A2A2A2;
   color: #fff;
+}
+
+.text-box {
+  @include flare-dots;
+
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  
+  padding: 0 30px;
+  text-align: center;
+  font-size: 24px;
+  
+  min-width: 104px;
+  height: 42px;
+
+  border-radius: 21px;
+  box-shadow: 0 3px 4px rgba(0,0,0,.5);
+  background: #333;
+
+
+  &--pink {
+    background: linear-gradient( to top, #850DEE, #AA07B7, #FF97FF);
+  }
+
+  &--red {
+    background: linear-gradient( to top, #E3025F, #AE014C, #FF91DE);
+  }
+}
+
+
+.circle-number {
+  @include flare-dots;
+
+  width: 140px;
+  height: 140px;
+  border-radius: 50%;
+  box-shadow: 0 0 15px 5px rgba(255,255,255,.2), inset 0 0 20px #FF74C8, inset 20px 30px 0 rgba(255,255,255,.2);
+  background: linear-gradient(to top, #FF74C8, #B10253 22%,#B10253 42%, #FF74C8 87%);
+
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 62px;
+  line-height: 1;
+
+  &:before {
+    top: 9px;
+    right: 38px;
+    width: 10px;
+    height: 14px;
+    transform: rotate(-50deg);
+  }
+  &:after {
+    top: 24px;
+    right: 29px;
+    width: 4px;
+    height: 4px;
+  }
 }

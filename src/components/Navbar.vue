@@ -1,24 +1,22 @@
 <template>
   <div class="navbar">
     <div class="navbar__item">
-      <text-box text="59" />
+      <div class="text-box text-box--pink">59</div>
     </div>
     <div class="navbar__item  navbar__item--bigger">
       <progress-bar :progress="50" />
     </div>
     <div class="navbar__item">
-      <text-box text="227" />
+      <div class="text-box text-box--red">227</div>
     </div>
   </div>
 </template>
 
 <script>
-import TextBox from "./common/TextBox"
 import ProgressBar from "./ProgressBar"
 export default {
   name: "Navbar",
   components: {
-    TextBox,
     ProgressBar,
   },
 }

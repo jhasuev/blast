@@ -1,0 +1,28 @@
+
+@mixin flare-dots {
+  position: relative;
+  
+  &:before,
+  &:after {
+    content: "";
+    position: absolute;
+    filter: blur(1px);
+    background-color: rgba(255, 255, 255, 0.9);
+    border-radius: 50%;
+  }
+
+  &:before {
+    top: 6px;
+    right: 17px;
+    width: 8px;
+    height: 11px;
+    transform: rotate(-33deg);
+  }
+
+  &:after {
+    top: 16px;
+    right: 7px;
+    width: 3px;
+    height: 3px;
+  }
+}

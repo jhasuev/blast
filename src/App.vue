@@ -3,7 +3,7 @@
     <div ref="ui">
       <navbar />
       <popup v-model="popup" title="Меню">
-        Lorem ipsum dolor sit amet consectetur adipisicing elit. Expedita alias porro aliquam quos vero voluptatem voluptas rerum unde quibusdam natus, praesentium aspernatur incidunt libero maxime exercitationem magni facere eum! Aspernatur!
+        <div class="circle-number">37</div>
       </popup>
     </div>
     <div :id="containerId" class="game-container__inner" />
