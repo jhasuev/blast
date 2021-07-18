@@ -16,6 +16,8 @@
 </template>
 
 <script>
+import { mapActions } from "vuex"
+import eventEmitter from "@/eventEmitter"
 export default {
   name: "App",
   data() {
@@ -36,9 +38,14 @@ export default {
     this.stopHandlersFromUI()
     this.$nextTick(() => {
       this.gameInstance = game.launch(this.containerId)
+      eventEmitter.on("addScore", score => {
+        this.addScore(score)
+      })
     })
   },
   methods: {
+    ...mapActions([ 'addScore' ]),
+
     stopHandlersFromUI() {
       const ui = this.$refs.ui;
       if(!ui) return setInterval(() => this.stopHandlersFromUI(), 16);

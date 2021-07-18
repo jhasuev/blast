@@ -1,5 +1,6 @@
 import { Scene } from 'phaser'
 import Tiles from "../prefabs/Tiles"
+import eventEmitter from "@/eventEmitter"
 
 export default class PlayScene extends Scene {
   constructor () {
@@ -15,7 +16,7 @@ export default class PlayScene extends Scene {
 
   onTileClicked(pointer, tile) {
     this.tiles.removeAroundSimilarTiles(tile).then(tiles => {
-      console.log(tiles);
+      eventEmitter.emit("addScore", tiles.count)
     })
   }
 }
