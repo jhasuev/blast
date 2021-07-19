@@ -15,7 +15,7 @@ export default class GameScene extends Scene {
     this.canClick = true
     
     eventEmitter.on("phaser:stopGaming", () => {
-      this.scene.start("BootScene", { stoped: true })
+      this.scene.start("StartScene", { stoped: true })
     })
   }
 
