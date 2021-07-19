@@ -74,6 +74,11 @@ export default {
     
     &--bigger {
       min-width: 380px;
+
+      @media screen and (max-width: 650px){
+        min-width: 0;
+        flex-grow: 1;
+      }
     }
 
     &:last-child {
