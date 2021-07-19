@@ -7,7 +7,7 @@ function launch(containerId) {
     type: Phaser.AUTO,
     width: 1635,
     height: 1819,
-    backgroundColor: '#A2A2A2',
+    transparent: true,
     parent: containerId,
     physics: {
       default: 'arcade',

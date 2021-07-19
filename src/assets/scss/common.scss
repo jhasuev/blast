@@ -3,8 +3,29 @@
 body {
   min-height: 100vh;
   font-family: Marvin;
-  background-color: #A2A2A2;
   color: #fff;
+  overflow: hidden;
+
+  
+  &:before,
+  &:after {
+    content: "";
+    position: absolute;
+    top: -50px;
+    left: -50px;
+    right: -50px;
+    bottom: -50px;
+    z-index: -1;
+    opacity: .5;
+    
+    background: url("../img/bg.jpg") center center;
+    background-size: cover;
+    filter: blur(10px);
+  }
+  &:after {
+    opacity: .8;
+    background: #000;
+  }
 }
 
 .btn,
