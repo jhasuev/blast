@@ -26,9 +26,9 @@ export default class BootScene extends Scene {
   create(state) {
     if (state.stoped) return null
 
-    eventEmitter.on("phaser:startGame", () => this.scene.start('PlayScene'))
+    eventEmitter.on("phaser:startGame", () => this.scene.start('GameScene'))
     if(router.currentRoute._value.name == 'game') {
-      this.scene.start('PlayScene')
+      this.scene.start('GameScene')
     }
   }
 }

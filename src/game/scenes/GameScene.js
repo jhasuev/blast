@@ -2,9 +2,9 @@ import { Scene } from 'phaser'
 import Tiles from "../prefabs/Tiles"
 import eventEmitter from "@/eventEmitter"
 
-export default class PlayScene extends Scene {
+export default class GameScene extends Scene {
   constructor () {
-    super("PlayScene")
+    super("GameScene")
   }
 
   create () {
