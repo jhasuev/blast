@@ -29,18 +29,8 @@ export default {
     }
   },
 
-  watch: {
-    getPercent(current) {
-      if (current === 0) {
-        eventEmitter.emit("vue:timeover")
-      }
-    },
-  },
-
   computed: {
-    ...mapGetters([
-      'getScore',
-    ]),
+    ...mapGetters([ 'getScore' ]),
 
     getPercent() {
       return this.timer / config.timer * 100
@@ -52,8 +42,8 @@ export default {
   },
 
   mounted() {
-    eventEmitter.on("vue:updateTimer", dt => {
-      this.timer = Math.max(this.timer - dt, 0)
+    eventEmitter.on("vue:updateTimer", time => {
+      this.timer = time
     })
   },
 }

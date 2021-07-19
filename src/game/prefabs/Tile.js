@@ -7,6 +7,8 @@ export default class Tile extends Phaser.GameObjects.Sprite {
     this.tile = params.tile
     this.row = params.rowIndex
     this.col = params.colIndex
+    this.isMoving = false
+    this.isKilling = false
 
     this.setPosition(params.x, params.y)
 
@@ -30,6 +32,7 @@ export default class Tile extends Phaser.GameObjects.Sprite {
   }
 
   kill() {
+    this.isKilling = true
     return new Promise(resolve => {
       this.scene.tweens.add({
         targets: this,
@@ -40,12 +43,14 @@ export default class Tile extends Phaser.GameObjects.Sprite {
           this.setScale(1)
           this.setAlive(false)
           resolve()
+          this.isKilling = false
         }
       })
     })
   }
 
   moveY(y) {
+    this.isMoving = true
     this.scene.tweens.add({
       y,
       targets: this,
@@ -53,9 +58,13 @@ export default class Tile extends Phaser.GameObjects.Sprite {
       duration: 500,
       delay: Phaser.Math.Between(1, 50),
       onComplete: () => {
-        this.scene.canClick = true
+        this.isMoving = false
       }
     })
+  }
+
+  canClick() {
+    return !this.isMoving && !this.isKilling
   }
 
   restart() {
