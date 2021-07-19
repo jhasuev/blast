@@ -81,9 +81,35 @@ export default {
 <style lang="scss">
 
 .game-container {
+  position: relative;
+
   height: 100vh;
   overflow: hidden;
   padding: 100px 15px;
+
+  @media screen and (max-width: 600px) {
+    padding-bottom: 15px;
+  }
+
+  &:before,
+  &:after {
+    content: "";
+    position: absolute;
+    top: -50px;
+    left: -50px;
+    right: -50px;
+    bottom: -50px;
+    z-index: -1;
+    opacity: .5;
+    
+    background: url("./assets/img/bg.jpg") center;
+    background-size: cover;
+    filter: blur(10px);
+  }
+  &:after {
+    opacity: .8;
+    background: #000;
+  }
 
   &__inner {
     width: 100%;
@@ -114,8 +140,8 @@ export default {
     position: fixed;
     top: 0;
     left: 0;
-    width: 100vw;
-    height: 100vh;
+    right: 0;
+    bottom: 0;
     background-color: rgba(0, 0, 0, .5);
 
     transition: .3s;
