@@ -153,6 +153,7 @@ export default class Tiles extends Phaser.Physics.Arcade.Group {
     }
 
     if (!hasSimilarTiles) {
+      this.scene.stopGame()
       console.log('game over or shuffle tiles...')
     }
 

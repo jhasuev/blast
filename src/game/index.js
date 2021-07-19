@@ -1,13 +1,15 @@
 import Phaser from 'phaser'
 import BootScene from '@/game/scenes/BootScene'
-import PlayScene from '@/game/scenes/PlayScene'
+import PreloadScene from '@/game/scenes/PreloadScene'
+import StartScene from '@/game/scenes/StartScene'
+import GameScene from '@/game/scenes/GameScene'
 
 function launch(containerId) {
   return new Phaser.Game({
     type: Phaser.AUTO,
     width: 1635,
     height: 1819,
-    backgroundColor: '#A2A2A2',
+    transparent: true,
     parent: containerId,
     physics: {
       default: 'arcade',
@@ -15,7 +17,7 @@ function launch(containerId) {
         debug: false
       }
     },
-    scene: [BootScene, PlayScene]
+    scene: [BootScene, PreloadScene, StartScene, GameScene]
   })
 }
 

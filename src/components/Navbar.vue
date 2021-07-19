@@ -1,7 +1,7 @@
 <template>
   <div class="navbar">
     <div class="navbar__item">
-      <div class="text-box text-box--pink">{{ getRecord }}</div>
+      <div class="text-box text-box--pink">{{ getTime }}</div>
     </div>
     <div class="navbar__item  navbar__item--bigger">
       <timer :progress="getPercent" />
@@ -29,28 +29,21 @@ export default {
     }
   },
 
-  watch: {
-    getPercent(current) {
-      if (current === 0) {
-        eventEmitter.emit("vue:timeover")
-      }
-    },
-  },
-
   computed: {
-    ...mapGetters([
-      'getScore',
-      'getRecord',
-    ]),
+    ...mapGetters([ 'getScore' ]),
 
     getPercent() {
       return this.timer / config.timer * 100
     },
+
+    getTime() {
+      return Math.max(parseInt(this.timer / 1000), 0)
+    },
   },
 
   mounted() {
-    eventEmitter.on("vue:updateTimer", dt => {
-      this.timer = Math.max(this.timer - dt, 0)
+    eventEmitter.on("vue:updateTimer", time => {
+      this.timer = time
     })
   },
 }
@@ -74,6 +67,11 @@ export default {
     
     &--bigger {
       min-width: 380px;
+
+      @media screen and (max-width: 650px){
+        min-width: 0;
+        flex-grow: 1;
+      }
     }
 
     &:last-child {

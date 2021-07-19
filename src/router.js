@@ -1,5 +1,10 @@
 import { createRouter, createWebHashHistory } from "vue-router"
 
+const redirectIfNotExistsFromRoute = (to, from, next) => {
+  if (!from.name) next({ name: "home" })
+  else next()
+}
+
 const routes = [
   {
     path: "/",
@@ -10,11 +15,13 @@ const routes = [
     path: "/result",
     name: "result",
     component: () => import("@/views/Result"),
+    beforeEnter: redirectIfNotExistsFromRoute,
   },
   {
     path: "/game",
     name: "game",
     component: () => import("@/views/Game"),
+    beforeEnter: redirectIfNotExistsFromRoute,
   },
   {
     path: "/record",

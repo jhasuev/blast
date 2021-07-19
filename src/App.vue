@@ -16,10 +16,10 @@
 </template>
 
 <script>
-import events from "./vue-events"
+import eventEmitter from "@/eventEmitter"
+import { mapActions } from "vuex"
 export default {
   name: "App",
-  mixins: [ events ],
   data() {
     return {
       downloaded: false,
@@ -39,8 +39,15 @@ export default {
     this.$nextTick(() => {
       this.gameInstance = game.launch(this.containerId)
     })
+
+    this.setEvents()
   },
   methods: {
+    ...mapActions([
+      'addScore',
+      'setScore',
+    ]),
+
     stopHandlersFromUI() {
       const ui = this.$refs.ui;
       if(!ui) return setInterval(() => this.stopHandlersFromUI(), 16);
@@ -49,6 +56,20 @@ export default {
       for (const eventName of events){
         ui.addEventListener(eventName, e => e.stopPropagation())
       }
+    },
+
+    setEvents() {
+      eventEmitter.on("vue:gameover", () => {
+        this.$router.push({ name: "result" })
+      })
+      
+      eventEmitter.on("vue:addScore", score => {
+        this.addScore(score)
+      })
+
+      eventEmitter.on("vue:startGame", () => {
+        this.setScore(0)
+      })
     },
   },
   destroyed() {
@@ -61,7 +82,6 @@ export default {
 
 .game-container {
   height: 100vh;
-  width: 100vw;
   overflow: hidden;
   padding: 100px 15px;
 
@@ -115,10 +135,8 @@ export default {
   justify-content: center;
 
   height: 100vh;
-  width: 100vw;
 
-  font-size: 2rem;
-  font-family: 'Courier New', Courier, monospace;
+  font-size: min(2rem, 7vw);
 }
 
 .slide {
