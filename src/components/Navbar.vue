@@ -1,7 +1,7 @@
 <template>
   <div class="navbar">
     <div class="navbar__item">
-      <div class="text-box text-box--pink">{{ getRecord }}</div>
+      <div class="text-box text-box--pink">{{ getTime }}</div>
     </div>
     <div class="navbar__item  navbar__item--bigger">
       <timer :progress="getPercent" />
@@ -40,11 +40,14 @@ export default {
   computed: {
     ...mapGetters([
       'getScore',
-      'getRecord',
     ]),
 
     getPercent() {
       return this.timer / config.timer * 100
+    },
+
+    getTime() {
+      return Math.max(parseInt(this.timer / 1000), 0)
     },
   },
 
