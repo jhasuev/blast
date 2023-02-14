@@ -1,5 +1,9 @@
 # vue-phaser3
 
+## DEMO
+
+https://jhasuev.github.io/blast/dist/
+
 #### Webpack boilerplate that integrates Phaser 3 into a Vue 3 project.
 
 This project template has been set up using the **Vue CLI 4** and includes:
